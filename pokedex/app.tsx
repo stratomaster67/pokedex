@@ -16,7 +16,6 @@ import {
 
 const { width } = Dimensions.get('window');
 
-// Serviço da API
 const getPokemons = async (offset = 0, limit = 20) => {
   try {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`);
@@ -36,7 +35,6 @@ const getPokemonDetails = async (urlOrId) => {
   }
 };
 
-// Componente Card do Pokémon no estilo Pokémon GO
 const PokemonCard = ({ pokemon, onPress }) => (
   <TouchableOpacity style={styles.card} onPress={onPress}>
     <View style={styles.cardHeader}>
@@ -54,7 +52,6 @@ const PokemonCard = ({ pokemon, onPress }) => (
   </TouchableOpacity>
 );
 
-// Modal de Detalhes no estilo Pokémon GO
 const PokemonDetailsModal = ({ visible, pokemon, onClose }) => {
   if (!pokemon) return null;
 
@@ -191,7 +188,6 @@ const PokemonDetailsModal = ({ visible, pokemon, onClose }) => {
   );
 };
 
-// Componente Principal
 export default function App() {
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -284,7 +280,6 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {/* Header no estilo Pokémon GO */}
       <View style={styles.header}>
         <View style={styles.headerMain}>
           <Text style={styles.title}>POKÉDEX</Text>
@@ -298,7 +293,6 @@ export default function App() {
         </View>
       </View>
 
-      {/* Lista de Pokémons */}
       <FlatList
         data={pokemons}
         renderItem={renderPokemonCard}
@@ -325,14 +319,12 @@ export default function App() {
         }
       />
 
-      {/* Modal de Detalhes */}
       <PokemonDetailsModal
         visible={modalVisible}
         pokemon={selectedPokemon}
         onClose={closeModal}
       />
 
-      {/* Loading Overlay */}
       {detailLoading && (
         <View style={styles.loadingOverlay}>
           <View style={styles.loadingBox}>
@@ -345,15 +337,14 @@ export default function App() {
   );
 }
 
-// Estilos no tema Pokémon GO
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F2F2F2', // Cinza claro do Pokémon GO
+    backgroundColor: '#F2F2F2', 
   },
   loadingContainer: {
     flex: 1,
-    backgroundColor: '#4FC3F7', // Azul claro do Pokémon GO
+    backgroundColor: '#4FC3F7', 
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -383,7 +374,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   header: {
-    backgroundColor: '#4FC3F7', // Azul principal do Pokémon GO
+    backgroundColor: '#4FC3F7', 
     paddingTop: 50,
     paddingBottom: 15,
     borderBottomWidth: 4,
@@ -648,7 +639,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   abilitiesContainer: {
-    // Estilo para container de habilidades
   },
   abilityItem: {
     paddingVertical: 8,
@@ -722,4 +712,5 @@ const styles = StyleSheet.create({
     color: '#666666',
     fontWeight: 'bold',
   },
+
 });
